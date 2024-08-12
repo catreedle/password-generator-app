@@ -44,84 +44,75 @@
       </fieldset>
       <fieldset class="form__checkbox">
         <div class="form__checkbox__item__container">
-          <input
-            class="form__checkbox__uppercase__input"
-            type="checkbox"
-            id="uppercase"
-          />
+          <input class="form__checkbox__input" type="checkbox" id="uppercase" />
           <span class="checkbox-square" id="pseudo-uppercase"></span>
-          <label class="form__checkbox__uppercase__label" for="uppercase"
-            >Include Uppercase Letters</label
-          >
+          <label for="uppercase">Include Uppercase Letters</label>
         </div>
         <div class="form__checkbox__item__container">
-          <input
-            class="form__checkbox__lowercase__input"
-            type="checkbox"
-            id="lowercase"
-          />
+          <input class="form__checkbox__input" type="checkbox" id="lowercase" />
           <span class="checkbox-square" id="pseudo-lowercase"></span>
-          <label class="form__checkbox__lowercase__label" for="lowercase"
-            >Include Lowercase Letters</label
-          >
+          <label for="lowercase">Include Lowercase Letters</label>
         </div>
         <div class="form__checkbox__item__container">
-          <input
-            class="form__checkbox__number__input"
-            type="checkbox"
-            id="number"
-          />
+          <input class="form__checkbox__input" type="checkbox" id="number" />
           <span class="checkbox-square" id="pseudo-number"></span>
-          <label class="form__checkbox__number__label" for="number"
-            >Include Numbers</label
-          >
+          <label for="number">Include Numbers</label>
         </div>
         <div class="form__checkbox__item__container">
-          <input
-            class="form__checkbox__symbol__label"
-            type="checkbox"
-            id="symbol"
-          />
+          <input class="form__checkbox__input" type="checkbox" id="symbol" />
           <span class="checkbox-square" id="pseudo-symbol"></span>
-          <label class="form__checkbox__symbol__input" for="symbol"
-            >Include Symbols</label
-          >
+          <label for="symbol">Include Symbols</label>
         </div>
       </fieldset>
       <div class="password-generator__strength">
         <span class="password-generator__strength__title">Strength</span>
-        <div class="password-generator__strength-bar__container" id="strenght--empty">
+        <div
+          class="password-generator__strength-bar__container"
+          id="strength--empty"
+        >
           <span class="password-generator__strength-bar"></span>
           <span class="password-generator__strength-bar"></span>
           <span class="password-generator__strength-bar"></span>
-          <span class="password-generator__strength-bar bar-4"></span>
+          <span class="password-generator__strength-bar"></span>
         </div>
 
-        <div class="password-generator__strength-bar__container hidden" id="strenght--too-weak">
-            <span class="password-generator__strength__text">too weak</span>
+        <div
+          class="password-generator__strength-bar__container hidden"
+          id="strength--too-weak"
+        >
+          <span class="password-generator__strength__text">too weak</span>
           <span class="password-generator__strength-bar color-too-weak"></span>
           <span class="password-generator__strength-bar"></span>
           <span class="password-generator__strength-bar"></span>
           <span class="password-generator__strength-bar"></span>
         </div>
 
-        <div class="password-generator__strength-bar__container hidden" id="strenght--weak">
-            <span class="password-generator__strength__text">weak</span>
+        <div
+          class="password-generator__strength-bar__container hidden"
+          id="strength--weak"
+        >
+          <span class="password-generator__strength__text">weak</span>
           <span class="password-generator__strength-bar color-weak"></span>
           <span class="password-generator__strength-bar color-weak"></span>
           <span class="password-generator__strength-bar"></span>
           <span class="password-generator__strength-bar"></span>
         </div>
 
-        <div class="password-generator__strength-bar__container hidden" id="strenght--medium">
-            <span class="password-generator__strength__text">medium</span>
+        <div
+          class="password-generator__strength-bar__container hidden"
+          id="strength--medium"
+        >
+          <span class="password-generator__strength__text">medium</span>
           <span class="password-generator__strength-bar color-medium"></span>
           <span class="password-generator__strength-bar color-medium"></span>
           <span class="password-generator__strength-bar color-medium"></span>
           <span class="password-generator__strength-bar"></span>
         </div>
 
-        <div class="password-generator__strength-bar__container hidden" id="strenght--strong">
+        <div
+          class="password-generator__strength-bar__container hidden"
+          id="strength--strong"
+        >
           <span class="password-generator__strength__text">strong</span>
           <span class="password-generator__strength-bar color-strong"></span>
           <span class="password-generator__strength-bar color-strong"></span>
@@ -129,7 +120,11 @@
           <span class="password-generator__strength-bar color-strong"></span>
         </div>
       </div>
-      <button type="submit" class="password-generator__button">
+      <button
+        type="submit"
+        class="password-generator__button"
+        id="generate-button"
+      >
         <span>Generate</span>
         <img
           src="/starter-code/assets/images/icon-arrow-right.svg"

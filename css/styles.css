@@ -212,13 +212,14 @@ input[type="checkbox"]:checked + .checkbox-square {
 .password-generator__strength__title {
   text-transform: uppercase;
   color: var(--color-grey);
+  font-size: .8rem;
 }
 
 .password-generator__strength__text {
-    text-transform: uppercase;
-    color: var(--color-white);
-    font-size: 24px;
-    margin-inline-end: 8px;
+  text-transform: uppercase;
+  color: var(--color-white);
+  font-size: 1rem;
+  margin-inline-end: 4px;
 }
 
 .password-generator__strength-bar__container {
@@ -233,7 +234,7 @@ input[type="checkbox"]:checked + .checkbox-square {
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .color-too-weak {
@@ -281,6 +282,16 @@ input[type="checkbox"]:checked + .checkbox-square {
   .form__checkbox__item__container {
     gap: 1rem;
   }
+
+  .password-generator__strength__title {
+    font-size: 1rem;
+  }
+
+  .password-generator__strength__text {
+    font-size: 1.3rem;
+    margin-inline-end: 8px;
+  }
+
   .password-generator__button {
     gap: 2rem;
   }
