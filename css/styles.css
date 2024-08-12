@@ -170,7 +170,7 @@ fieldset {
 .form__checkbox__item__container {
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .form__checkbox__item__container label {
@@ -209,20 +209,51 @@ input[type="checkbox"]:checked + .checkbox-square {
   padding: 1rem 2rem;
 }
 
-.password-generator__strength__text {
+.password-generator__strength__title {
   text-transform: uppercase;
   color: var(--color-grey);
 }
 
+.password-generator__strength__text {
+    text-transform: uppercase;
+    color: var(--color-white);
+    font-size: 24px;
+    margin-inline-end: 8px;
+}
+
 .password-generator__strength-bar__container {
   display: flex;
-  gap: 3px;
+  gap: 8px;
 }
 
 .password-generator__strength-bar {
   width: 10px;
   height: 28px;
   border: 1px solid var(--color-white);
+}
+
+.hidden {
+    display: none;
+}
+
+.color-too-weak {
+  background-color: var(--color-red);
+  border: none;
+}
+
+.color-weak {
+  background-color: var(--color-orange);
+  border: none;
+}
+
+.color-medium {
+  background-color: var(--color-yellow);
+  border: none;
+}
+
+.color-strong {
+  background-color: var(--color-neon-green);
+  border: none;
 }
 
 .password-generator__button {
@@ -234,7 +265,7 @@ input[type="checkbox"]:checked + .checkbox-square {
   font-size: 18px;
   font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
-  padding: .5rem;
+  padding: 0.5rem;
   background-color: var(--color-neon-green);
   font-weight: bold;
   color: var(--color-dark-grey);

@@ -89,17 +89,52 @@
         </div>
       </fieldset>
       <div class="password-generator__strength">
-        <span class="password-generator__strength__text">Strength</span>
-        <div class="password-generator__strength-bar__container">
-          <span class="password-generator__strength-bar bar-1"></span>
-          <span class="password-generator__strength-bar bar-2"></span>
-          <span class="password-generator__strength-bar bar-3"></span>
+        <span class="password-generator__strength__title">Strength</span>
+        <div class="password-generator__strength-bar__container" id="strenght--empty">
+          <span class="password-generator__strength-bar"></span>
+          <span class="password-generator__strength-bar"></span>
+          <span class="password-generator__strength-bar"></span>
           <span class="password-generator__strength-bar bar-4"></span>
+        </div>
+
+        <div class="password-generator__strength-bar__container hidden" id="strenght--too-weak">
+            <span class="password-generator__strength__text">too weak</span>
+          <span class="password-generator__strength-bar color-too-weak"></span>
+          <span class="password-generator__strength-bar"></span>
+          <span class="password-generator__strength-bar"></span>
+          <span class="password-generator__strength-bar"></span>
+        </div>
+
+        <div class="password-generator__strength-bar__container hidden" id="strenght--weak">
+            <span class="password-generator__strength__text">weak</span>
+          <span class="password-generator__strength-bar color-weak"></span>
+          <span class="password-generator__strength-bar color-weak"></span>
+          <span class="password-generator__strength-bar"></span>
+          <span class="password-generator__strength-bar"></span>
+        </div>
+
+        <div class="password-generator__strength-bar__container hidden" id="strenght--medium">
+            <span class="password-generator__strength__text">medium</span>
+          <span class="password-generator__strength-bar color-medium"></span>
+          <span class="password-generator__strength-bar color-medium"></span>
+          <span class="password-generator__strength-bar color-medium"></span>
+          <span class="password-generator__strength-bar"></span>
+        </div>
+
+        <div class="password-generator__strength-bar__container hidden" id="strenght--strong">
+          <span class="password-generator__strength__text">strong</span>
+          <span class="password-generator__strength-bar color-strong"></span>
+          <span class="password-generator__strength-bar color-strong"></span>
+          <span class="password-generator__strength-bar color-strong"></span>
+          <span class="password-generator__strength-bar color-strong"></span>
         </div>
       </div>
       <button type="submit" class="password-generator__button">
         <span>Generate</span>
-        <img src="/starter-code/assets/images/icon-arrow-right.svg" alt="icon-arrow-right">
+        <img
+          src="/starter-code/assets/images/icon-arrow-right.svg"
+          alt="icon-arrow-right"
+        />
       </button>
     </form>
   </body>
