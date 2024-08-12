@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <title>Frontend Mentor | Password generator app</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="password-generator__header">Password Generator</h1>
+    </header>
+    <div class="password-generator__password__container">
+      <span>P4$5W0rD!</span>
+      <img src="/starter-code//assets/images/icon-copy.svg" alt="icon-copy" />
+    </div>
+    <form class="password-generator__form" id="password-generator__form">
+      <fieldset class="form__character-length">
+        <div class="form__character-length__text">
+          <label class="form__character-length__label" for="length"
+            >Character Length</label
+          >
+          <span class="form__character-length__value">10</span>
+        </div>
+
+        <input
+          class="form__character-length__input"
+          id="length"
+          type="range"
+          min="1"
+          max="20"
+          value="10"
+        />
+      </fieldset>
+      <fieldset class="form__checkbox">
+        <div class="form__checkbox__item__container">
+          <input
+            class="form__checkbox__uppercase__input"
+            type="checkbox"
+            id="uppercase"
+          />
+          <span class="checkbox-square"></span>
+          <label class="form__checkbox__uppercase__label" for="uppercase"
+            >Include Uppercase Letters</label
+          >
+        </div>
+        <div class="form__checkbox__item__container">
+          <input
+            class="form__checkbox__lowercase__input"
+            type="checkbox"
+            id="lowercase"
+          />
+          <span class="checkbox-square"></span>
+          <label class="form__checkbox__lowercase__label" for="lowercase"
+            >Include Lowercase Letters</label
+          >
+        </div>
+        <div class="form__checkbox__item__container">
+          <input
+            class="form__checkbox__number__input"
+            type="checkbox"
+            id="number"
+          />
+          <span class="checkbox-square"></span>
+          <label class="form__checkbox__number__label" for="number"
+            >Include Numbers</label
+          >
+        </div>
+        <div class="form__checkbox__item__container">
+          <input
+            class="form__checkbox__symbol__label"
+            type="checkbox"
+            id="symbol"
+          />
+          <span class="checkbox-square"></span>
+          <label class="form__checkbox__symbol__input" for="symbol"
+            >Include Symbols</label
+          >
+        </div>
+      </fieldset>
+      <div class="password-generator__strength">
+        <span class="password-generator__strength__text">Strength</span>
+        <div class="password-generator__strength-bar__container">
+          <span class="password-generator__strength-bar bar-1"></span>
+          <span class="password-generator__strength-bar bar-2"></span>
+          <span class="password-generator__strength-bar bar-3"></span>
+          <span class="password-generator__strength-bar bar-4"></span>
+        </div>
+      </div>
+      <button type="submit" class="password-generator__button">
+        <span>Generate</span>
+        <img src="/starter-code/assets/images/icon-arrow-right.svg" alt="icon-arrow-right">
+      </button>
+    </form>
+  </body>
+</html>

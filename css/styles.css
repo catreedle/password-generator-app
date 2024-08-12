@@ -1,0 +1,233 @@
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/starter-code/assets/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/starter-code/assets/fonts/JetBrainsMono-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --color-dark-grey: #24232c;
+  --color-grey: #817d92;
+  --color-white: #e6e5ea;
+  --color-black: #18171f;
+
+  --color-neon-green: #a4ffaf;
+  --color-red: #f64a4a;
+  --color-orange: #fb7c58;
+  --color-yellow: #f8cd65;
+}
+
+*,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "JetBrains Mono", monospace;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-size: 18px;
+  gap: 1rem;
+}
+
+.password-generator__header {
+  font-size: 24px;
+  color: var(--color-grey);
+}
+
+.password-generator__password__container {
+  min-width: 30rem;
+  background-color: var(--color-dark-grey);
+  font-size: 32px;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.password-generator__form {
+  min-width: 30rem;
+  background-color: var(--color-dark-grey);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form__character-length {
+  display: flex;
+  flex-direction: column;
+  align-items: inline-start;
+  gap: 2rem;
+}
+
+.form__character-length__text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form__character-length__value {
+  color: var(--color-neon-green);
+  font-size: 32px;
+}
+
+/* Base styling for the slider */
+input[type="range"] {
+  -webkit-appearance: none; /* Remove default WebKit styling */
+  width: 100%; /* Full width */
+  height: 8px; /* Slider track height */
+  background: var(--color-neon-green); /* Slider track background color */
+  outline: none; /* Remove outline */
+  position: relative;
+}
+
+/* Slider thumb (handle) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove default WebKit styling */
+  width: 28px; /* Thumb width */
+  height: 28px; /* Thumb height */
+  background: var(--color-white); /* Thumb color */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 50%; /* Circular thumb */
+  position: relative; /* Ensure thumb is centered */
+  margin-top: -8px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 28px; /* Thumb width */
+  height: 28px; /* Thumb height */
+  background: var(--color-white); /* Thumb color */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 50%; /* Circular thumb */
+  margin-top: -8px;
+}
+
+input[type="range"]::-ms-thumb {
+  width: 28px; /* Thumb width */
+  height: 28px; /* Thumb height */
+  background: var(--color-white); /* Thumb color */
+  height: 8px;
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 50%; /* Circular thumb */
+  margin-top: -8px;
+}
+
+/* Slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%; /* Full width */
+  background: var(--color-neon-green); /* Track color */
+  height: 8px;
+}
+
+input[type="range"]::-moz-range-track {
+  width: 100%; /* Full width */
+  background: var(--color-neon-green); /* Track color */
+  height: 8px;
+}
+
+input[type="range"]::-ms-track {
+  width: 100%; /* Full width */
+  background: var(--color-neon-green); /* Track color */
+  border-color: transparent; /* Hide the border */
+  color: transparent; /* Hide the color */
+  height: 8px;
+}
+
+fieldset {
+  border: none;
+}
+
+.form__checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form__checkbox__item__container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form__checkbox__item__container label {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+  /* Hide the default checkbox */
+  display: none;
+}
+
+.checkbox-square {
+  width: 20px; /* Size of the custom checkbox */
+  height: 20px;
+  cursor: pointer;
+  background-color: transparent; /* Default color of the checkbox square */
+  border: 2px solid var(--color-white); /* Border color of the checkbox square */
+  display: inline-block;
+  margin-right: 10px; /* Space between checkbox and text */
+  transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for color changes */
+  position: relative;
+  background-image: url("/starter-code/assets/images/icon-check.svg");
+  background-size: cover; /* Ensure image covers the element */
+}
+
+input[type="checkbox"]:checked + .checkbox-square {
+  background-color: var(--color-neon-green); /* Color when checked */
+  border-color: var(--color-neon-green); /* Border color when checked */
+}
+
+.password-generator__strength {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-black);
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.password-generator__strength__text {
+  text-transform: uppercase;
+  color: var(--color-grey);
+}
+
+.password-generator__strength-bar__container {
+  display: flex;
+  gap: 3px;
+}
+
+.password-generator__strength-bar {
+  width: 10px;
+  height: 28px;
+  border: 1px solid var(--color-white);
+}
+
+.password-generator__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  font-size: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  padding: 1rem;
+  background-color: var(--color-neon-green);
+  font-weight: bold;
+  color: var(--color-dark-grey);
+}
