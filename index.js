@@ -2,17 +2,25 @@ const characterLengthSlider = document.getElementById("characterLength");
 const characterLengthShowValue = document.querySelector(
   ".form__character-length__value"
 );
+const checkboxElements = document.querySelectorAll(".checkbox-square");
 
-characterLengthSlider.addEventListener("input", function () {
-  characterLengthShowValue.textContent = characterLengthSlider.value;
-});
+function handleSlider(event) {
+  const { value } = event.target;
+  characterLengthShowValue.textContent = value;
+  const progress = (value / characterLengthSlider.max) * 100;
+  characterLengthSlider.style.background = `linear-gradient(to right, var(--color-neon-green) ${progress}%, var(--color-black) ${progress}%)`;
+}
 
-const sliderEl = characterLengthSlider
+characterLengthSlider.addEventListener("input", handleSlider);
 
-sliderEl.addEventListener("input", (event) => {
-  const tempSliderValue = event.target.value;
+function handleCheckboxClick(event) {
+  const checkboxId = event.target.id;
+  const inputId = checkboxId.split("-")[1];
 
-  const progress = (tempSliderValue / sliderEl.max) * 100;
+  const inputCheckElement = document.getElementById(inputId);
+  inputCheckElement.checked = !inputCheckElement.checked;
+}
 
-  sliderEl.style.background = `linear-gradient(to right, var(--color-neon-green) ${progress}%, var(--color-black) ${progress}%)`;
+checkboxElements.forEach((element) => {
+  element.addEventListener("click", handleCheckboxClick);
 });
