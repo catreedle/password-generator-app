@@ -23,6 +23,8 @@ const generateButton = document.getElementById("generate-button");
 
 // password
 const passwordElement = document.getElementById("password");
+const iconCopyPassword = document.querySelector(".password-generator__copy");
+const notifyCopyElement = document.querySelector(".password-generator__copied");
 
 // character most probable occurences at random
 const characterOccurences = {
@@ -116,6 +118,7 @@ generateButton.addEventListener("click", function (e) {
   const password = generatePassword(charLength, checkedCriteriaIds);
   passwordElement.textContent = password;
   passwordElement.style.opacity = 1;
+  notifyCopyElement.classList.add("hidden");
 });
 
 function generateRandomChar(value) {
@@ -225,3 +228,17 @@ function getRandomWeightedValue(values, weights) {
   // Return the value at the found index
   return values[index];
 }
+
+function copyPasswordToClipboard() {
+  const password = passwordElement.textContent;
+  navigator.clipboard
+    .writeText(password)
+    .then(() => {
+      notifyCopyElement.classList.remove("hidden");
+    })
+    .catch((error) => {
+      console.error("failed to copy password", error);
+    });
+}
+
+iconCopyPassword.addEventListener("click", copyPasswordToClipboard);

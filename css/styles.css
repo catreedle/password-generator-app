@@ -64,6 +64,26 @@ body {
     opacity: 25%;
 }
 
+.password-generator__copy__container {
+    display: flex;
+    align-items: center;
+    gap: 1rem
+}
+
+.password-generator__copied {
+    font-size: 1rem;
+    color: var(--color-neon-green);
+    text-transform: uppercase;
+}
+
+.password-generator__copy {
+    cursor: pointer;
+}
+
+.password-generator__copy:hover path {
+    fill: white;
+}
+
 .password-generator__form {
   width: 343px;
   background-color: var(--color-dark-grey);
