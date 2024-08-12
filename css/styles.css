@@ -312,6 +312,14 @@ input[type="checkbox"]:checked + .checkbox-square {
   fill: var(--color-neon-green);
 }
 
+.text__warning__character-length {
+    color: var(--color-red);
+}
+
+a {
+    color: var(--color-white);
+}
+
 @media (min-width: 768px) {
   .password-generator__password__container,
   .password-generator__form {

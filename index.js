@@ -23,8 +23,13 @@ const generateButton = document.getElementById("generate-button");
 
 // password
 const passwordElement = document.getElementById("password");
+const passwordPlaceholder = "P4$5W0rD!";
 const iconCopyPassword = document.querySelector(".password-generator__copy");
 const notifyCopyElement = document.querySelector(".password-generator__copied");
+
+const textWarningSlider = document.querySelector(
+  ".text__warning__character-length"
+);
 
 // character most probable occurences at random
 const characterOccurences = {
@@ -40,6 +45,7 @@ function handleSlider(event) {
   const progress = (value / characterLengthSlider.max) * 100;
   characterLengthSlider.style.background = `linear-gradient(to right, var(--color-neon-green) ${progress}%, var(--color-black) ${progress}%)`;
   checkPasswordStrength();
+  textWarningSlider.classList.add("hidden");
 }
 
 characterLengthSlider.addEventListener("input", handleSlider);
@@ -51,6 +57,7 @@ function handleCheckboxClick(event) {
   const inputCheckElement = document.getElementById(inputId);
   inputCheckElement.checked = !inputCheckElement.checked;
   checkPasswordStrength();
+  textWarningSlider.classList.add("hidden");
 }
 
 checkboxElements.forEach((element) => {
@@ -58,7 +65,10 @@ checkboxElements.forEach((element) => {
 });
 
 checkboxInputs.forEach((element) => {
-  element.addEventListener("change", checkPasswordStrength);
+  element.addEventListener("change", function () {
+    checkPasswordStrength();
+    textWarningSlider.classList.add("hidden");
+  });
 });
 
 function checkPasswordStrength() {
@@ -116,9 +126,11 @@ generateButton.addEventListener("click", function (e) {
   );
   const checkedCriteriaIds = checkedCriterias.map((item) => item.id);
   const password = generatePassword(charLength, checkedCriteriaIds);
-  passwordElement.textContent = password;
-  passwordElement.style.opacity = 1;
-  notifyCopyElement.classList.add("hidden");
+  if (password) {
+    passwordElement.textContent = password;
+    passwordElement.style.opacity = 1;
+    notifyCopyElement.classList.add("hidden");
+  }
 });
 
 function generateRandomChar(value) {
@@ -145,7 +157,8 @@ function generateRandomChar(value) {
 
 function generatePassword(length, criterias) {
   if (length < criterias.length) {
-    alert("Add Character Length");
+    textWarningSlider.classList.remove("hidden");
+    return;
   }
 
   let passwordString = "";
@@ -231,14 +244,15 @@ function getRandomWeightedValue(values, weights) {
 
 function copyPasswordToClipboard() {
   const password = passwordElement.textContent;
-  navigator.clipboard
-    .writeText(password)
-    .then(() => {
-      notifyCopyElement.classList.remove("hidden");
-    })
-    .catch((error) => {
-      console.error("failed to copy password", error);
-    });
+  if (password !== passwordPlaceholder)
+    navigator.clipboard
+      .writeText(password)
+      .then(() => {
+        notifyCopyElement.classList.remove("hidden");
+      })
+      .catch((error) => {
+        console.error("failed to copy password", error);
+      });
 }
 
 iconCopyPassword.addEventListener("click", copyPasswordToClipboard);
