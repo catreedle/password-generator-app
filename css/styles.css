@@ -60,6 +60,10 @@ body {
   align-items: center;
 }
 
+.password-generator__password {
+    opacity: 25%;
+}
+
 .password-generator__form {
   width: 343px;
   background-color: var(--color-dark-grey);

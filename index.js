@@ -115,6 +115,7 @@ generateButton.addEventListener("click", function (e) {
   const checkedCriteriaIds = checkedCriterias.map((item) => item.id);
   const password = generatePassword(charLength, checkedCriteriaIds);
   passwordElement.textContent = password;
+  passwordElement.style.opacity = 1;
 });
 
 function generateRandomChar(value) {
