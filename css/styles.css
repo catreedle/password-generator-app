@@ -51,19 +51,19 @@ body {
 }
 
 .password-generator__password__container {
-  min-width: 30rem;
+  width: 343px;
   background-color: var(--color-dark-grey);
   font-size: 32px;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .password-generator__form {
-  min-width: 30rem;
+  width: 343px;
   background-color: var(--color-dark-grey);
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -87,66 +87,74 @@ body {
   font-size: 32px;
 }
 
-/* Base styling for the slider */
 input[type="range"] {
-  -webkit-appearance: none; /* Remove default WebKit styling */
-  width: 100%; /* Full width */
-  height: 8px; /* Slider track height */
-  background: var(--color-neon-green); /* Slider track background color */
-  outline: none; /* Remove outline */
-  position: relative;
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  height: 8px;
+  background: var(--color-black);
 }
 
-/* Slider thumb (handle) */
+/* Thumb: webkit */
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Remove default WebKit styling */
-  width: 28px; /* Thumb width */
-  height: 28px; /* Thumb height */
-  background: var(--color-white); /* Thumb color */
-  cursor: pointer; /* Pointer cursor on hover */
-  border-radius: 50%; /* Circular thumb */
-  position: relative; /* Ensure thumb is centered */
-  margin-top: -8px;
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  height: 28px;
+  width: 28px;
+  background-color: var(--color-white);
+  border-radius: 50%;
+  border: none;
+
+  /* box-shadow: -407px 0 0 400px var(--color-white); emove this line */
+  transition: 0.2s ease-in-out;
 }
 
+/* Thumb: Firefox */
 input[type="range"]::-moz-range-thumb {
-  width: 28px; /* Thumb width */
-  height: 28px; /* Thumb height */
-  background: var(--color-white); /* Thumb color */
-  cursor: pointer; /* Pointer cursor on hover */
-  border-radius: 50%; /* Circular thumb */
-  margin-top: -8px;
+  height: 28px;
+  width: 28px;
+  background-color: var(--color-white);
+  border-radius: 50%;
+  border: none;
+
+  /* box-shadow: -407px 0 0 400px var(--color-white); emove this line */
+  transition: 0.2s ease-in-out;
 }
 
-input[type="range"]::-ms-thumb {
-  width: 28px; /* Thumb width */
-  height: 28px; /* Thumb height */
-  background: var(--color-white); /* Thumb color */
-  height: 8px;
-  cursor: pointer; /* Pointer cursor on hover */
-  border-radius: 50%; /* Circular thumb */
-  margin-top: -8px;
+/* Hover, active & focus Thumb: Webkit */
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: var(--color-black);
+  border: 2px solid var(--color-neon-green);
+}
+input[type="range"]:active::-webkit-slider-thumb {
+  background-color: var(--color-black);
+  border: 2px solid var(--color-neon-green);
+}
+input[type="range"]:focus::-webkit-slider-thumb {
+  background-color: var(--color-black);
+  border: 2px solid var(--color-neon-green);
 }
 
-/* Slider track */
-input[type="range"]::-webkit-slider-runnable-track {
-  width: 100%; /* Full width */
-  background: var(--color-neon-green); /* Track color */
-  height: 8px;
-}
+/* Hover, active & focus Thumb: Firefox */
 
-input[type="range"]::-moz-range-track {
-  width: 100%; /* Full width */
-  background: var(--color-neon-green); /* Track color */
-  height: 8px;
+input[type="range"]::-moz-range-thumb:hover {
+  background-color: var(--color-black);
+  border: 2px solid var(--color-neon-green);
 }
-
-input[type="range"]::-ms-track {
-  width: 100%; /* Full width */
-  background: var(--color-neon-green); /* Track color */
-  border-color: transparent; /* Hide the border */
-  color: transparent; /* Hide the color */
-  height: 8px;
+input[type="range"]:active::-moz-range-thumb {
+  background-color: var(--color-black);
+  border: 2px solid var(--color-neon-green);
+}
+input[type="range"]:focus::-moz-range-thumb {
+  background-color: var(--color-black);
+  border: 2px solid var(--color-neon-green);
 }
 
 fieldset {
@@ -160,13 +168,13 @@ fieldset {
 }
 
 .form__checkbox__item__container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
 }
 
 .form__checkbox__item__container label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 input[type="checkbox"] {
@@ -221,13 +229,28 @@ input[type="checkbox"]:checked + .checkbox-square {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
   font-size: 18px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
-  padding: 1rem;
+  padding: .5rem;
   background-color: var(--color-neon-green);
   font-weight: bold;
   color: var(--color-dark-grey);
+}
+
+@media (min-width: 768px) {
+  .password-generator__password__container,
+  .password-generator__form {
+    min-width: 30rem;
+    padding: 2rem;
+  }
+
+  .form__checkbox__item__container {
+    gap: 1rem;
+  }
+  .password-generator__button {
+    gap: 2rem;
+  }
 }
