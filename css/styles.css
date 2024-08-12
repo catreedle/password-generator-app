@@ -61,27 +61,28 @@ body {
 }
 
 .password-generator__password {
-    opacity: 25%;
+  opacity: 25%;
+  font-size: 1.3rem;
 }
 
 .password-generator__copy__container {
-    display: flex;
-    align-items: center;
-    gap: 1rem
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .password-generator__copied {
-    font-size: 1rem;
-    color: var(--color-neon-green);
-    text-transform: uppercase;
+  font-size: 12px;
+  color: var(--color-neon-green);
+  text-transform: uppercase;
 }
 
 .password-generator__copy {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .password-generator__copy:hover path {
-    fill: white;
+  fill: white;
 }
 
 .password-generator__form {
@@ -308,7 +309,7 @@ input[type="checkbox"]:checked + .checkbox-square {
 }
 
 .password-generator__button:hover .password-generator__button__icon path {
-    fill: var(--color-neon-green);
+  fill: var(--color-neon-green);
 }
 
 @media (min-width: 768px) {
@@ -316,6 +317,17 @@ input[type="checkbox"]:checked + .checkbox-square {
   .password-generator__form {
     min-width: 30rem;
     padding: 2rem;
+  }
+
+  .password-generator__copy__container {
+    gap: 1rem;
+  }
+  .password-generator__password {
+    font-size: 1.7rem;
+  }
+
+  .password-generator__copied {
+    font-size: 1rem;
   }
 
   .form__checkbox__item__container {
