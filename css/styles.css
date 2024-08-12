@@ -212,7 +212,7 @@ input[type="checkbox"]:checked + .checkbox-square {
 .password-generator__strength__title {
   text-transform: uppercase;
   color: var(--color-grey);
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .password-generator__strength__text {
@@ -270,6 +270,21 @@ input[type="checkbox"]:checked + .checkbox-square {
   background-color: var(--color-neon-green);
   font-weight: bold;
   color: var(--color-dark-grey);
+  cursor: pointer;
+}
+
+.password-generator__button:hover {
+  background-color: var(--color-dark-grey);
+  color: var(--color-neon-green);
+  border: 2px solid var(--color-neon-green);
+}
+
+.password-generator__button__icon {
+  fill: "#24232C";
+}
+
+.password-generator__button:hover .password-generator__button__icon path {
+    fill: var(--color-neon-green);
 }
 
 @media (min-width: 768px) {

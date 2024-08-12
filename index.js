@@ -18,11 +18,15 @@ const weakPasswordElement = document.getElementById("strength--weak");
 const mediumPasswordElement = document.getElementById("strength--medium");
 const strongPasswordElement = document.getElementById("strength--strong");
 
+// button
+const generateButton = document.getElementById("generate-button");
+
 function handleSlider(event) {
   const { value } = event.target;
   characterLengthShowValue.textContent = value;
   const progress = (value / characterLengthSlider.max) * 100;
   characterLengthSlider.style.background = `linear-gradient(to right, var(--color-neon-green) ${progress}%, var(--color-black) ${progress}%)`;
+  checkPasswordStrength();
 }
 
 characterLengthSlider.addEventListener("input", handleSlider);
@@ -33,6 +37,7 @@ function handleCheckboxClick(event) {
 
   const inputCheckElement = document.getElementById(inputId);
   inputCheckElement.checked = !inputCheckElement.checked;
+  checkPasswordStrength();
 }
 
 checkboxElements.forEach((element) => {
@@ -40,31 +45,51 @@ checkboxElements.forEach((element) => {
 });
 
 function checkPasswordStrength() {
+  let strength = "";
   const checkedCount = Array.from(checkboxInputs).filter(
     (input) => input.checked
   ).length;
+  const characterLength = characterLengthSlider.value;
+  if (characterLength == 0) {
+    strength = "empty";
+  } else if (characterLength < 6 || checkedCount === 1) {
+    strength = "too weak";
+  } else if (
+    (characterLength >= 6 && characterLength <= 8) ||
+    checkedCount === 2
+  ) {
+    strength = "weak";
+  } else if (characterLength >= 13 && checkedCount === 4) {
+    strength = "strong";
+  } else if (characterLength >= 9 && checkedCount >= 3) {
+    strength = "medium";
+  }
 
   passwordStrengthElements.forEach((element) => {
     element.classList.add("hidden");
   });
 
-  switch (checkedCount) {
-    case 0:
+  switch (strength) {
+    case "empty":
       emptyPasswordElement.classList.remove("hidden");
       break;
-    case 1:
+    case "too weak":
       tooWeakPasswordElement.classList.remove("hidden");
       break;
-    case 2:
+    case "weak":
       weakPasswordElement.classList.remove("hidden");
       break;
-    case 3:
+    case "medium":
       mediumPasswordElement.classList.remove("hidden");
       break;
-    case 4:
+    case "strong":
       strongPasswordElement.classList.remove("hidden");
       break;
     default:
       break;
   }
 }
+
+generateButton.addEventListener("click", function (e) {
+  e.preventDefault();
+});
