@@ -21,6 +21,17 @@ const strongPasswordElement = document.getElementById("strength--strong");
 // button
 const generateButton = document.getElementById("generate-button");
 
+// password
+const passwordElement = document.getElementById("password");
+
+// character most probable occurences at random
+const characterOccurences = {
+  uppercase: 2,
+  lowercase: 4,
+  number: 2,
+  symbol: 1,
+};
+
 function handleSlider(event) {
   const { value } = event.target;
   characterLengthShowValue.textContent = value;
@@ -44,6 +55,10 @@ checkboxElements.forEach((element) => {
   element.addEventListener("click", handleCheckboxClick);
 });
 
+checkboxInputs.forEach((element) => {
+  element.addEventListener("change", checkPasswordStrength);
+});
+
 function checkPasswordStrength() {
   let strength = "";
   const checkedCount = Array.from(checkboxInputs).filter(
@@ -52,7 +67,7 @@ function checkPasswordStrength() {
   const characterLength = characterLengthSlider.value;
   if (characterLength == 0) {
     strength = "empty";
-  } else if (characterLength < 6 || checkedCount === 1) {
+  } else if (characterLength < 6 || checkedCount <= 1) {
     strength = "too weak";
   } else if (
     (characterLength >= 6 && characterLength <= 8) ||
@@ -92,4 +107,120 @@ function checkPasswordStrength() {
 
 generateButton.addEventListener("click", function (e) {
   e.preventDefault();
+
+  const charLength = parseInt(characterLengthSlider.value);
+  const checkedCriterias = Array.from(checkboxInputs).filter(
+    (element) => element.checked
+  );
+  const checkedCriteriaIds = checkedCriterias.map((item) => item.id);
+  const password = generatePassword(charLength, checkedCriteriaIds);
+  passwordElement.textContent = password;
 });
+
+function generateRandomChar(value) {
+  let character = "";
+  switch (value) {
+    case "uppercase":
+      character = getRandomUppercaseChar();
+      break;
+    case "lowercase":
+      character = getRandomLowercaseChar();
+      break;
+    case "number":
+      character = getRandomNumber();
+      break;
+    case "symbol":
+      character = getRandomSymbol();
+      break;
+    default:
+      break;
+  }
+
+  return character;
+}
+
+function generatePassword(length, criterias) {
+  if (length < criterias.length) {
+    alert("Add Character Length");
+  }
+
+  let passwordString = "";
+
+  //   generate string to fulfill checked criterias
+  for (let i = 0; i < criterias.length; i++) {
+    let criteria = criterias[i];
+    let randomCharacter = generateRandomChar(criteria);
+    passwordString += randomCharacter;
+  }
+
+  //   generate rest of the password
+  const weights = criterias.map((criteria) => characterOccurences[criteria]);
+  const remainingLength = length - criterias.length;
+  for (let i = 0; i < remainingLength; i++) {
+    let value = getRandomWeightedValue(criterias, weights);
+    let randomCharacter = generateRandomChar(value);
+    passwordString += randomCharacter;
+  }
+
+  const shuffledPassword = shuffleString(passwordString);
+  return shuffledPassword;
+}
+
+function shuffleString(string) {
+  // Copy the array to avoid modifying the original
+  const arrayOfChars = string.split("");
+  const shuffledArray = arrayOfChars.slice();
+
+  // Fisher-Yates shuffle algorithm
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    // Swap elements at indices i and j
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+
+  const shuffledString = shuffledArray.join("");
+  return shuffledString;
+}
+
+function getRandomUppercaseChar() {
+  // Generate a random number between 65 and 90 (ASCII values for A-Z)
+  const randomCode = Math.floor(Math.random() * 26) + 65;
+  // Convert the ASCII code to a character
+  return String.fromCharCode(randomCode);
+}
+
+function getRandomLowercaseChar() {
+  // Generate a random number between 97 and 122 (ASCII values for a-z)
+  const randomCode = Math.floor(Math.random() * 26) + 97;
+  // Convert the ASCII code to a character
+  return String.fromCharCode(randomCode);
+}
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * 10);
+}
+
+function getRandomSymbol() {
+  const symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?/`~";
+  const randomIndex = Math.floor(Math.random() * symbols.length);
+  return symbols[randomIndex];
+}
+
+function getRandomWeightedValue(values, weights) {
+  // Step 1: Create cumulative weights
+  const cumulativeWeights = weights.reduce((acc, weight) => {
+    const lastValue = acc.length > 0 ? acc[acc.length - 1] : 0;
+    acc.push(lastValue + weight);
+    return acc;
+  }, []);
+
+  // Step 2: Generate a random number between 0 and the total weight
+  const random =
+    Math.random() * cumulativeWeights[cumulativeWeights.length - 1];
+
+  // Step 3: Find which range the random number falls into
+  const index = cumulativeWeights.findIndex((weight) => random < weight);
+
+  // Return the value at the found index
+  return values[index];
+}
