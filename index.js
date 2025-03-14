@@ -39,12 +39,18 @@ const characterOccurences = {
 	symbol: 1,
 };
 
+function updateUIState() {
+	displayPasswordStrength();
+	textWarningSlider.classList.add("hidden");
+	generateButton.disabled = false;
+}
+
 function handleSlider(event) {
 	const { value } = event.target;
 	characterLengthShowValue.textContent = value;
 	const progress = (value / characterLengthSlider.max) * 100;
 	characterLengthSlider.style.background = `linear-gradient(to right, var(--color-neon-green) ${progress}%, var(--color-black) ${progress}%)`;
-	checkPasswordStrength();
+	displayPasswordStrength();
 	textWarningSlider.classList.add("hidden");
 	generateButton.disabled = false;
 }
@@ -57,9 +63,7 @@ function handleCheckboxClick(event) {
 
 	const inputCheckElement = document.getElementById(inputId);
 	inputCheckElement.checked = !inputCheckElement.checked;
-	checkPasswordStrength();
-	textWarningSlider.classList.add("hidden");
-	generateButton.disabled = false;
+	updateUIState();
 }
 
 checkboxElements.forEach((element) => {
@@ -68,13 +72,11 @@ checkboxElements.forEach((element) => {
 
 checkboxInputs.forEach((element) => {
 	element.addEventListener("change", function () {
-		checkPasswordStrength();
-		textWarningSlider.classList.add("hidden");
-		generateButton.disabled = false;
+		updateUIState();
 	});
 });
 
-function checkPasswordStrength() {
+function displayPasswordStrength() {
 	passwordStrengthElements.forEach((element) => {
 		element.classList.add("hidden");
 	});
@@ -146,23 +148,16 @@ function generatePassword(length, criterias) {
 	let passwordString = "";
 
 	//   generate string to fulfill checked criterias
-	for (let i = 0; i < criterias.length; i++) {
-		let criteria = criterias[i];
-		let randomCharacter = generateRandomChar(criteria);
-		passwordString += randomCharacter;
-	}
+	let passwordArray = criterias.map(generateRandomChar);
 
 	//   generate rest of the password
 	const weights = criterias.map((criteria) => characterOccurences[criteria]);
-	const remainingLength = length - criterias.length;
-	for (let i = 0; i < remainingLength; i++) {
-		let value = getRandomWeightedValue(criterias, weights);
-		let randomCharacter = generateRandomChar(value);
-		passwordString += randomCharacter;
+	while (passwordArray.length < length) {
+		const value = getRandomWeightedValue(criterias, weights);
+		passwordArray.push(generateRandomChar(value));
 	}
 
-	const shuffledPassword = shuffleString(passwordString);
-	return shuffledPassword;
+	return shuffleString(passwordArray.join(""));
 }
 
 function shuffleString(string) {
